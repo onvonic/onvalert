@@ -18,7 +18,7 @@ Tambahkan link berikut ke bagian `<head>` dari file HTML Anda:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/onvonic/onvalert@main/assets/onvAlert.css">
-<script src="https://onvonic.com/cdn/library/onvAlert.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/onvonic/onvalert@main/assets/onvAlert.js"></script>
 ```
 
 ## Penggunaan
