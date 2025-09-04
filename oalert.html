@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAlert Demo | Documentation</title>
+    <link rel="stylesheet" href="assets/o-alert.css">
+    <script src="assets/o-alert.js"></script>
+</head>
+
+<body>
+    <h1>OAlert Demo</h1>
+    <button onclick="showInfo()">Show Info</button>
+    <button onclick="showSuccess()">Show Success</button>
+    <button onclick="showError()">Show Error</button>
+    <button onclick="showWarning()">Show Warning</button>
+    <button onclick="showQuestion()">Show Question</button>
+    <button onclick="showFire()">Show Fire Example</button>
+    <button onclick="showAutoClose()">Show Auto Close</button>
+    <button onclick="showHtml()">Show HTML Content</button>
+    <button onclick="showWithSubtext()">Show With Subtext</button>
+
+    <script>
+        function showInfo() {
+            OAlert.show({
+                title: "Information",
+                text: "This is an info alert.",
+                icon: "info"
+            });
+        }
+
+        function showSuccess() {
+            OAlert.show({
+                title: "Success",
+                text: "Your action was successful!",
+                icon: "success"
+            });
+        }
+
+        function showError() {
+            OAlert.show({
+                title: "Error",
+                text: "Something went wrong!",
+                icon: "error"
+            });
+        }
+
+        function showWarning() {
+            OAlert.show({
+                title: "Warning",
+                text: "Be careful, this action cannot be undone.",
+                icon: "warning",
+                buttons: [{
+                        text: "Yes, continue",
+                        class: "oalert-btn-danger",
+                        action: () => {
+                            alert("Action confirmed!");
+                            OAlert.close();
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        class: "oalert-btn-secondary",
+                        action: () => OAlert.close()
+                    }
+                ]
+            });
+        }
+
+        function showQuestion() {
+            OAlert.show({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "question",
+                buttons: [{
+                        text: "Yes, delete it!",
+                        class: "oalert-btn-primary",
+                        action: () => {
+                            OAlert.close();
+                            OAlert.show({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success",
+                                buttons: [{
+                                    text: "OK",
+                                    class: "oalert-btn-primary",
+                                    action: () => OAlert.close()
+                                }]
+                            });
+                        }
+                    },
+                    {
+                        text: "Cancel",
+                        class: "oalert-btn-secondary",
+                        action: () => {
+                            OAlert.close();
+                        }
+                    }
+                ]
+            });
+        }
+
+        function showFire() {
+            OAlert.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    OAlert.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                }
+            });
+        }
+
+        // contoh auto close dengan timeout
+        function showAutoClose() {
+            OAlert.fire({
+                title: "Auto close alert",
+                text: "This alert will close in 0.5 seconds.",
+                icon: "info",
+                showCancelButton: false,
+                confirmButtonText: "OK",
+                timer: 500
+            });
+        }
+
+        function showHtml() {
+            OAlert.fire({
+                title: "Custom HTML",
+                html: "<p><b>Hello!</b> You can use <span style='color:red;'>HTML</span> here.<br><i>Even styled text!</i></p>",
+                icon: "error",
+                confirmButtonText: "Cool!"
+            });
+        }
+
+        function showWithSubtext() {
+            OAlert.show({
+                title: "Update Available",
+                text: "A new version of the app is ready to install.",
+                subtext: "Version 2.1.4 - Released today",
+                icon: "info",
+                buttons: [{
+                        text: "Update Now",
+                        class: "oalert-btn-primary",
+                        action: () => {
+                            alert("Updating...");
+                            OAlert.close();
+                        }
+                    },
+                    {
+                        text: "Later",
+                        class: "oalert-btn-secondary",
+                        action: () => OAlert.close()
+                    }
+                ]
+            });
+        }
+    </script>
+
+</body>
+
+</html>

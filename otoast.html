@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OToast Demo | Documentation</title>
+    <link rel="stylesheet" href="assets/o-toast.css">
+</head>
+
+<body>
+    <h1>OToast Demo</h1>
+    <button onclick="showInfo()">Show Info</button>
+    <button onclick="showSuccess()">Show Success</button>
+    <button onclick="showError()">Show Error</button>
+    <button onclick="showWarning()">Show Warning</button>
+    <button onclick="showQuestion()">Show Question</button>
+    <button onclick="showCenterMiddle()">Show Center Middle (with blur)</button>
+    
+    <!-- Tambahan button untuk timestamp -->
+    <button onclick="showInfoWithTime()">Show Info with Time</button>
+    <button onclick="showSuccessWithTime()">Show Success with Time</button>
+    <button onclick="showErrorWithTime()">Show Error with Time</button>
+    <button onclick="showWarningWithTime()">Show Warning with Time</button>
+    <button onclick="showQuestionWithTime()">Show Question with Time</button>
+    
+    <script src="assets/o-toast.js"></script>
+    <script>
+        function showInfo() {
+            oToast.options({
+                title: "My Info",
+                text: "This is an info message",
+                icon: "info",
+                positionClass: "toast-top-right",
+                showDuration: "500",
+                hideDuration: "1000",
+                timeOut: "500000"
+            });
+        }
+
+        function showSuccess() {
+            oToast.options({
+                title: "Success!",
+                text: "This is a success message",
+                icon: "success",
+                positionClass: "toast-bottom-right",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "3000"
+            });
+        }
+
+        function showError() {
+            oToast.options({
+                title: "Error",
+                text: "This is an error message",
+                icon: "error",
+                positionClass: "toast-top-left",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000"
+            });
+        }
+
+        function showWarning() {
+            oToast.options({
+                title: "Warning",
+                text: "This is a warning message",
+                icon: "warning",
+                positionClass: "toast-bottom-left",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "4000"
+            });
+        }
+
+        function showQuestion() {
+            oToast.options({
+                title: "Question",
+                text: "This is a question message",
+                icon: "question",
+                positionClass: "toast-top-center",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "0"
+            });
+        }
+
+        function showCenterMiddle() {
+            oToast.options({
+                title: "Center Middle",
+                text: "This is a center middle message with blur",
+                icon: "info",
+                positionClass: "toast-center-middle",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                blur: true
+            });
+        }
+
+        // Fungsi dengan timestamp
+        function showInfoWithTime() {
+            oToast.options({
+                title: "My Info",
+                text: "This is an info message with timestamp",
+                icon: "info",
+                positionClass: "toast-top-right",
+                showDuration: "500",
+                hideDuration: "1000",
+                timeOut: "5000",
+                showTimestamp: true
+            });
+        }
+
+        function showSuccessWithTime() {
+            oToast.options({
+                title: "Success!",
+                text: "This is a success message with timestamp",
+                icon: "success",
+                positionClass: "toast-bottom-right",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "3000",
+                showTimestamp: true
+            });
+        }
+
+        function showErrorWithTime() {
+            oToast.options({
+                title: "Error",
+                text: "This is an error message with timestamp",
+                icon: "error",
+                positionClass: "toast-top-left",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                showTimestamp: true
+            });
+        }
+
+        function showWarningWithTime() {
+            oToast.options({
+                title: "Warning",
+                text: "This is a warning message with timestamp",
+                icon: "warning",
+                positionClass: "toast-bottom-left",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "4000",
+                showTimestamp: true
+            });
+        }
+
+        function showQuestionWithTime() {
+            oToast.options({
+                title: "Question",
+                text: "This is a question message with timestamp",
+                icon: "question",
+                positionClass: "toast-top-center",
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "0",
+                showTimestamp: true
+            });
+        }
+    </script>
+</body>
+
+</html>

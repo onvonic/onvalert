@@ -1,0 +1,215 @@
+#onv-toast-container {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.onv-toast {
+    position: fixed;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 320px;
+    max-width: 400px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    pointer-events: auto;
+    overflow: hidden;
+    /* Removed animation property - will be handled by JS */
+}
+
+.onv-toast-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.onv-toast-icon-wrapper {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.onv-toast-type {
+    flex: 1;
+    color: #212529;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.onv-toast-time {
+    color: #6c757d;
+    margin-right: 8px;
+    font-size: 12px;
+}
+
+.onv-toast-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #6c757d;
+    cursor: pointer;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.onv-toast-close:hover {
+    color: #495057;
+}
+
+.onv-toast-body {
+    padding: 12px;
+    color: #212529;
+    line-height: 1.4;
+}
+
+/* Position Classes */
+.toast-top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.toast-top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.toast-top-center {
+    top: 20px;
+    left: 50%;
+}
+
+.toast-bottom-right {
+    bottom: 20px;
+    right: 20px;
+}
+
+.toast-bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.toast-bottom-center {
+    bottom: 20px;
+    left: 50%;
+}
+
+.toast-center-middle {
+    top: 50%;
+    left: 50%;
+}
+
+/* Toast Type Colors */
+.onv-toast.info {
+    border: 1px solid #22d3ee;
+}
+
+.onv-toast.success {
+    border: 1px solid #047857;
+}
+
+.onv-toast.error {
+    border: 1px solid #b91c1c;
+}
+
+.onv-toast.warning {
+    border: 1px solid #fbbf24;
+}
+
+.onv-toast.question {
+    border: 1px solid #1d4ed8;
+}
+
+/* Blur Overlay */
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+}
+
+/* Multiple Toast Stacking - Updated untuk smooth stacking */
+#onv-toast-container .onv-toast:nth-child(n+2).toast-top-right,
+#onv-toast-container .onv-toast:nth-child(n+2).toast-top-left {
+    top: calc(20px + (80px * var(--toast-index, 0)));
+}
+
+#onv-toast-container .onv-toast:nth-child(n+2).toast-bottom-right,
+#onv-toast-container .onv-toast:nth-child(n+2).toast-bottom-left {
+    bottom: calc(20px + (80px * var(--toast-index, 0)));
+}
+
+#onv-toast-container .onv-toast:nth-child(n+2).toast-top-center {
+    top: calc(20px + (80px * var(--toast-index, 0)));
+}
+
+#onv-toast-container .onv-toast:nth-child(n+2).toast-bottom-center {
+    bottom: calc(20px + (80px * var(--toast-index, 0)));
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .onv-toast {
+        min-width: 280px;
+        max-width: calc(100vw - 40px);
+    }
+    
+    .toast-top-right,
+    .toast-bottom-right {
+        right: 20px;
+        left: 20px;
+    }
+    
+    .toast-top-left,
+    .toast-bottom-left {
+        left: 20px;
+        right: 20px;
+    }
+    
+    .toast-top-center,
+    .toast-bottom-center {
+        left: 20px;
+        right: 20px;
+    }
+    
+    .toast-center-middle {
+        left: 20px;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+/* Hover effects untuk interaktivitas */
+.onv-toast:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.toast-center-middle:hover {
+    transform: translate(-50%, -50%) translateY(-2px) scale(1.02);
+}
+
+/* Smooth transitions untuk hover effects */
+.onv-toast {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
