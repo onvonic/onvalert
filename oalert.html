@@ -147,20 +147,7 @@
                 text: "A new version of the app is ready to install.",
                 subtext: "Version 2.1.4 - Released today",
                 icon: "info",
-                buttons: [{
-                        text: "Update Now",
-                        class: "oalert-btn-primary",
-                        action: () => {
-                            alert("Updating...");
-                            OAlert.close();
-                        }
-                    },
-                    {
-                        text: "Later",
-                        class: "oalert-btn-secondary",
-                        action: () => OAlert.close()
-                    }
-                ]
+                timer: 500
             });
         }
     </script>
