@@ -20,6 +20,7 @@
     <button onclick="showAutoClose()">Show Auto Close</button>
     <button onclick="showHtml()">Show HTML Content</button>
     <button onclick="showWithSubtext()">Show With Subtext</button>
+    <button onclick="showWithAll()">Show With All</button>
 
     <script>
         function showInfo() {
@@ -146,6 +147,16 @@
                 title: "Update Available",
                 text: "A new version of the app is ready to install.",
                 subtext: "Version 2.1.4 - Released today",
+                icon: "info",
+                timer: 500
+            });
+        }
+        function showWithAll() {
+            OAlert.show({
+                title: "Update Available",
+                text: "A new version of the app is ready to install.",
+                subtext: "Version 2.1.4 - Released today",
+                html: "<p><b>Hello!</b> You can use <span style='color:red;'>HTML</span> here.<br><i>Even styled text!</i></p>",
                 icon: "info",
                 timer: 500
             });

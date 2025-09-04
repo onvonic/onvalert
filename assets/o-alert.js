@@ -10,6 +10,11 @@ class OAlert {
         };
         const opts = { ...defaults, ...options };
 
+        // pastikan overlay lama dihapus dulu
+        if (document.getElementById("oalert-overlay")) {
+            document.getElementById("oalert-overlay").remove();
+        }
+
         // overlay
         const overlay = document.createElement("div");
         overlay.id = "oalert-overlay";
@@ -34,11 +39,7 @@ class OAlert {
             content.appendChild(title);
         }
 
-        if (opts.html) {
-            const html = document.createElement("div");
-            html.innerHTML = opts.html;
-            content.appendChild(html);
-        } else if (opts.text) {
+        if (opts.text) {
             const text = document.createElement("p");
             text.className = "oalert-text";
             text.textContent = opts.text;
@@ -50,6 +51,12 @@ class OAlert {
             sub.className = "oalert-subtext";
             sub.innerHTML = opts.subtext;
             content.appendChild(sub);
+        }
+
+        if (opts.html) {
+            const html = document.createElement("div");
+            html.innerHTML = opts.html;
+            content.appendChild(html);
         }
 
         // buttons
@@ -93,6 +100,14 @@ class OAlert {
 
     static fire(options) {
         return new Promise((resolve) => {
+            let resolved = false;
+            const safeResolve = (val) => {
+                if (!resolved) {
+                    resolved = true;
+                    resolve(val);
+                }
+            };
+
             const buttons = [];
 
             if (options.showCancelButton) {
@@ -101,7 +116,7 @@ class OAlert {
                     class: "oalert-btn-secondary",
                     action: () => {
                         OAlert.close();
-                        resolve({ isConfirmed: false, isDismissed: true });
+                        safeResolve({ isConfirmed: false, isDismissed: true });
                     }
                 });
             }
@@ -111,7 +126,7 @@ class OAlert {
                 class: "oalert-btn-primary",
                 action: () => {
                     OAlert.close();
-                    resolve({ isConfirmed: true });
+                    safeResolve({ isConfirmed: true });
                 }
             });
 
@@ -120,7 +135,7 @@ class OAlert {
                 text: options.text,
                 html: options.html,
                 icon: options.icon,
-                subtext: options.footer || "",
+                subtext: options.footer || options.subtext || "",
                 buttons: buttons
             });
 
@@ -128,12 +143,11 @@ class OAlert {
             if (options.timer) {
                 setTimeout(() => {
                     OAlert.close();
-                    resolve({ isConfirmed: false, isDismissed: true, isTimeout: true });
+                    safeResolve({ isConfirmed: false, isDismissed: true, isTimeout: true });
                 }, options.timer);
             }
         });
     }
-
 
     // icon SVGs
     static icons = {
